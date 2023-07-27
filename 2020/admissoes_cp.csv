@@ -1,0 +1,16 @@
+ID,Nome,Idade,Cargo,Sal√°rio,Email,Data de Admiss√£o,Subordinados,Data de nascimento
+ID1,Jo√£o Silva,32,Gerente de Projetos,8000,joao.silva@example.com,15/04/20,"ID5,ID8",20/10/91
+ID2,Maria Santos,28,Analista de Marketing,4500,maria.santos@example.com,10/02/20,,02/04/95
+ID3,Pedro Souza,35,Desenvolvedor S√™nior,6500,pedro.souza@example.com,22/09/20,,11/12/88
+ID4,Ana Oliveira,31,Analista Financeiro,5000,ana.oliveira@example.com,05/07/20,,03/07/92
+ID5,Lucas Pereira,27,Desenvolvedor J√∫nior,3800,lucas.pereira@example.com,30/11/20,,06/05/96
+ID6,Carolina Santos,29,Analista de Recursos Humanos,4800,carolina.santos@example.com,18/08/20,,18/12/94
+ID7,Andr√© Almeida,33,Gerente de Vendas,7500,andre.almeida@example.com,26/03/20,ID10,28/02/90
+ID8,Fernanda Costa,26,Analista de Sistemas,4200,fernanda.costa@example.com,19/05/20,,03/08/97
+ID9,Rafael Lima,30,Desenvolvedor Pleno,5800,rafael.lima@example.com,10/09/20,,21/04/93
+ID10,Patr√≠cia Fernandes,34,Analista de Marketing,4700,patricia.fernandes@example.com,15/07/20,,16/06/89
+ID11,Gustavo Rodrigues,32,Desenvolvedor S√™nior,7000,gustavo.rodrigues@example.com,01/12/20,ID6,11/05/91
+ID12,Laura Mendes,29,Analista Financeiro,5200,laura.mendes@example.com,25/04/20,,25/12/94
+ID13,Rodrigo Costa,26,Desenvolvedor J√∫nior,4000,rodrigo.costa@example.com,10/10/20,,04/03/97
+ID14,Mariana Almeida,31,Analista de Recursos Humanos,4900,mariana.almeida@example.com,05/08/20,,16/03/92
+ID15,Camila Oliveira,27,Gerente de Vendas,7200,camila.oliveira@example.com,12/03/20,ID3,12/12/96

@@ -1,0 +1,168 @@
+{
+    "ID1": {
+        "Nome": "João Silva",
+        "Idade": "32",
+        "Cargo": "Gerente de Projetos",
+        "Salário": "8000.00",
+        "Email": "joao.silva@example.com",
+        "Data de Admissão": "2020-04-15",
+        "Subordinados": [
+            "ID5",
+            "ID8"
+        ]
+    },
+    "ID2": {
+        "Nome": "Maria Santos",
+        "Idade": "28",
+        "Cargo": "Analista de Marketing",
+        "Salário": "4500.00",
+        "Email": "maria.santos@example.com",
+        "Data de Admissão": "2020-02-10",
+        "Subordinados": [
+            ""
+        ]
+    },
+    "ID3": {
+        "Nome": "Pedro Souza",
+        "Idade": "35",
+        "Cargo": "Desenvolvedor Sênior",
+        "Salário": "6500.00",
+        "Email": "pedro.souza@example.com",
+        "Data de Admissão": "2020-09-22",
+        "Subordinados": [
+            ""
+        ]
+    },
+    "ID4": {
+        "Nome": "Ana Oliveira",
+        "Idade": "31",
+        "Cargo": "Analista Financeiro",
+        "Salário": "5000.00",
+        "Email": "ana.oliveira@example.com",
+        "Data de Admissão": "2020-07-05",
+        "Subordinados": [
+            ""
+        ]
+    },
+    "ID5": {
+        "Nome": "Lucas Pereira",
+        "Idade": "27",
+        "Cargo": "Desenvolvedor Júnior",
+        "Salário": "3800.00",
+        "Email": "lucas.pereira@example.com",
+        "Data de Admissão": "2020-11-30",
+        "Subordinados": [
+            ""
+        ]
+    },
+    "ID6": {
+        "Nome": "Carolina Santos",
+        "Idade": "29",
+        "Cargo": "Analista de Recursos Humanos",
+        "Salário": "4800.00",
+        "Email": "carolina.santos@example.com",
+        "Data de Admissão": "2020-08-18",
+        "Subordinados": [
+            ""
+        ]
+    },
+    "ID7": {
+        "Nome": "André Almeida",
+        "Idade": "33",
+        "Cargo": "Gerente de Vendas",
+        "Salário": "7500.00",
+        "Email": "andre.almeida@example.com",
+        "Data de Admissão": "2020-03-26",
+        "Subordinados": [
+            "ID10"
+        ]
+    },
+    "ID8": {
+        "Nome": "Fernanda Costa",
+        "Idade": "26",
+        "Cargo": "Analista de Sistemas",
+        "Salário": "4200.00",
+        "Email": "fernanda.costa@example.com",
+        "Data de Admissão": "2020-05-19",
+        "Subordinados": [
+            ""
+        ]
+    },
+    "ID9": {
+        "Nome": "Rafael Lima",
+        "Idade": "30",
+        "Cargo": "Desenvolvedor Pleno",
+        "Salário": "5800.00",
+        "Email": "rafael.lima@example.com",
+        "Data de Admissão": "2020-09-10",
+        "Subordinados": [
+            ""
+        ]
+    },
+    "ID10": {
+        "Nome": "Patrícia Fernandes",
+        "Idade": "34",
+        "Cargo": "Analista de Marketing",
+        "Salário": "4700.00",
+        "Email": "patricia.fernandes@example.com",
+        "Data de Admissão": "2020-07-15",
+        "Subordinados": [
+            ""
+        ]
+    },
+    "ID11": {
+        "Nome": "Gustavo Rodrigues",
+        "Idade": "32",
+        "Cargo": "Desenvolvedor Sênior",
+        "Salário": "7000.00",
+        "Email": "gustavo.rodrigues@example.com",
+        "Data de Admissão": "2020-12-01",
+        "Subordinados": [
+            "ID6"
+        ]
+    },
+    "ID12": {
+        "Nome": "Laura Mendes",
+        "Idade": "29",
+        "Cargo": "Analista Financeiro",
+        "Salário": "5200.00",
+        "Email": "laura.mendes@example.com",
+        "Data de Admissão": "2020-04-25",
+        "Subordinados": [
+            ""
+        ]
+    },
+    "ID13": {
+        "Nome": "Rodrigo Costa",
+        "Idade": "26",
+        "Cargo": "Desenvolvedor Júnior",
+        "Salário": "4000.00",
+        "Email": "rodrigo.costa@example.com",
+        "Data de Admissão": "2020-10-10",
+        "Subordinados": [
+            ""
+        ]
+    },
+    "ID14": {
+        "Nome": "Mariana Almeida",
+        "Idade": "31",
+        "Cargo": "Analista de Recursos Humanos",
+        "Salário": "4900.00",
+        "Email": "mariana.almeida@example.com",
+        "Data de Admissão": "2020-08-05",
+        "Subordinados": [
+            ""
+        ]
+    },
+    "ID15": {
+        "Nome": "Camila Oliveira",
+        "Idade": "27",
+        "Cargo": "Gerente de Vendas",
+        "Salário": "7200.00",
+        "Email": "camila.oliveira@example.com",
+        "Data de Admissão": "2020-03-12",
+        "Subordinados": [
+            "ID3"
+        ]
+    }
+}

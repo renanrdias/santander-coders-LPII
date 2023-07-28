@@ -142,31 +142,34 @@ def escrever_json_file(year:int, output_file_name:str, to_write_json:dict) -> No
     else:
         print(f"Arquivo {output_file_name} foi gerado com sucesso!")
 
-def relatorio_final_funcionarios(year:int, output_file_name:str, current_admissions_dict:dict, current_layoff_dict:dict=None, previous_final_report:dict=None) -> None:
+def relatorio_final_funcionarios(year:int, current_admissions_dict:dict, current_layoff_dict:dict=None, previous_final_report:dict=None) -> dict:
     
     current_admissions_cp = deepcopy(current_admissions_dict)
     if current_layoff_dict is not None: current_layoff_cp = deepcopy(current_layoff_dict)
+    if previous_final_report is not None: previous_final_report_cp = deepcopy(previous_final_report)
 
     for key in current_admissions_cp:
-            if key in previous_final_report:
-                previous_final_report[key]["Cargo"] = current_admissions_cp[key]["Cargo"]
-                previous_final_report[key]["Salário"] = current_admissions_cp[key]["Salário"]
-                previous_final_report[key]["Promoção"] = {f"{year}": current_admissions_cp[key]["Cargo"]} # pegamos somente o ano da promoção
+            if key in previous_final_report_cp:
+                previous_final_report_cp[key]["Cargo"] = current_admissions_cp[key]["Cargo"]
+                previous_final_report_cp[key]["Salário"] = current_admissions_cp[key]["Salário"]
+                previous_final_report_cp[key]["Promoção"] = {f"{year}": current_admissions_cp[key]["Cargo"]} # pegamos somente o ano da promoção
                 
                 # atualizamos a lista de subordinados, desconsiderando caracteres "" quando o funcionário promovido ganha subordinados.
-                previous_final_report[key]["Subordinados"] = [*[ sub for sub in previous_final_report[key]["Subordinados"] if sub != ""], \
+                previous_final_report_cp[key]["Subordinados"] = [*[ sub for sub in previous_final_report_cp[key]["Subordinados"] if sub != ""], \
                                                               *[i for i in current_admissions_cp[key]["Subordinados"] \
-                                                                if i not in previous_final_report[key]["Subordinados"] and i != ""]]\
-                                                                if previous_final_report[key]["Subordinados"] != current_admissions_cp[key]["Subordinados"]\
-                                                                else previous_final_report[key]["Subordinados"]
+                                                                if i not in previous_final_report_cp[key]["Subordinados"] and i != ""]]\
+                                                                if previous_final_report_cp[key]["Subordinados"] != current_admissions_cp[key]["Subordinados"]\
+                                                                else previous_final_report_cp[key]["Subordinados"]
             else:
-                previous_final_report.update({key: current_admissions_cp[key]})
+                previous_final_report_cp.update({key: current_admissions_cp[key]})
     
     # Retirar as demissões se existirem
     if current_layoff_dict is not None:
         for key in current_layoff_cp:
-            previous_final_report.pop(key)
-    escrever_json_file(year, output_file_name, previous_final_report)
+            previous_final_report_cp.pop(key)
+    
+    return previous_final_report_cp
+    # escrever_json_file(year, output_file_name, previous_final_report)
     
     # try:
     #     current_admissions_cp = deepcopy(current_admissions_dict)

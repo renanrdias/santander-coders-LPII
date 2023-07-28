@@ -80,9 +80,8 @@ if __name__ == "__main__":
                         print(e)
                     else:
                         output_file_name = input("Digite o nome do arquivo para gerar como json: ")
-                        relatorio_final_funcionarios(year, output_file_name, 
-                                                     admissoes_dict,
-                                                     previous_final_report=previous_year_report)
+                        final_report = relatorio_final_funcionarios(year,admissoes_dict, previous_final_report=previous_year_report)
+                        escrever_json_file(year, output_file_name, final_report)
                 else:
                     # fluxo com demissoes
                     pass

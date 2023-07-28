@@ -142,7 +142,18 @@ def escrever_json_file(year:int, output_file_name:str, to_write_json:dict) -> No
     else:
         print(f"Arquivo {output_file_name} foi gerado com sucesso!")
 
-def relatorio_final_funcionarios(year:int, current_admissions_dict:dict, current_layoff_dict:dict=None, previous_final_report:dict=None) -> dict:
+def relatorio_final_funcionarios(year:int, previous_final_report:dict, current_admissions_dict:dict, current_layoff_dict:dict=None) -> dict:
+    """Returns the final employees report based on the previous' year final report.
+    
+    Args:
+        year (int): The year the report will refer to.
+        previous_final_report (dict): Previous year employee final report
+        current_admissions_dict (dict): The current year admissions.
+        current_layoff_dict (dict, optional): The current year layoff, if any.
+    
+    Returns:
+        dict
+    """
     
     current_admissions_cp = deepcopy(current_admissions_dict)
     if current_layoff_dict is not None: current_layoff_cp = deepcopy(current_layoff_dict)

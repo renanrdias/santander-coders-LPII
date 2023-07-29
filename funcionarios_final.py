@@ -32,6 +32,9 @@ def ler_csv(year:int, input_file_name:str, check_file_size:bool=True) -> List[Li
             arquivo = list(csv.reader(file, delimiter=",", lineterminator="\n"))
         if check_file_size:
             if len(arquivo) > 0:
+                arquivo[0].append("Histórico de Promoção")
+                for data in arquivo[1:]:
+                    data.append([])
                 return arquivo
             else:
                 raise EmptyFileException(f"O arquivo {input_file_name} está vazio.")
@@ -72,7 +75,8 @@ def gerar_admissoes_dict(lista_admissoes:List[List]) -> dict:
     for info in lista_admissoes[1:]:
         lista_pares = [(k, v) if k != "Subordinados" else (k, v.split(",")) for k,v in zip(colunas, info[1:])]
         admissoes_dict.update({info[0]:dict(lista_pares)})
-
+    for key in admissoes_dict:
+        admissoes_dict[key]["Histórico de Promoção"].append((admissoes_dict[key]["Data de Admissão"][:4], admissoes_dict[key]["Cargo"]))
     return admissoes_dict
 
 def gerar_demissoes_dict(lista_demissoes:List[List]=None) -> dict:
@@ -163,7 +167,9 @@ def relatorio_final_funcionarios(year:int, previous_final_report:dict, current_a
             if key in previous_final_report_cp:
                 previous_final_report_cp[key]["Cargo"] = current_admissions_cp[key]["Cargo"]
                 previous_final_report_cp[key]["Salário"] = current_admissions_cp[key]["Salário"]
-                previous_final_report_cp[key]["Promoção"] = {f"{year}": current_admissions_cp[key]["Cargo"]} # pegamos somente o ano da promoção
+                
+                # pegamos somente o ano da promoção
+                previous_final_report_cp[key]["Histórico de Promoção"] = [*previous_final_report_cp[key]["Histórico de Promoção"], (year, current_admissions_cp[key]["Cargo"])]
                 
                 # atualizamos a lista de subordinados, desconsiderando caracteres "" quando o funcionário promovido ganha subordinados.
                 previous_final_report_cp[key]["Subordinados"] = [*[ sub for sub in previous_final_report_cp[key]["Subordinados"] if sub != ""], \

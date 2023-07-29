@@ -167,9 +167,11 @@ def relatorio_final_funcionarios(year:int, previous_final_report:dict, current_a
             if key in previous_final_report_cp:
                 previous_final_report_cp[key]["Cargo"] = current_admissions_cp[key]["Cargo"]
                 previous_final_report_cp[key]["Salário"] = current_admissions_cp[key]["Salário"]
+
+                previous_final_report_cp[key]["Promoção"] = {f"{year}": current_admissions_cp[key]["Cargo"]} # pegamos somente o ano da promoção
                 
                 # pegamos somente o ano da promoção
-                previous_final_report_cp[key]["Histórico de Promoção"] = [*previous_final_report_cp[key]["Histórico de Promoção"], (year, current_admissions_cp[key]["Cargo"])]
+                previous_final_report_cp[key]["Histórico de Promoção"] = [*previous_final_report_cp[key]["Histórico de Promoção"], (f"{year}", current_admissions_cp[key]["Cargo"])]
                 
                 # atualizamos a lista de subordinados, desconsiderando caracteres "" quando o funcionário promovido ganha subordinados.
                 previous_final_report_cp[key]["Subordinados"] = [*[ sub for sub in previous_final_report_cp[key]["Subordinados"] if sub != ""], \

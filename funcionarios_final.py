@@ -186,6 +186,13 @@ def relatorio_final_funcionarios(year:int, previous_final_report:dict, current_a
     if current_layoff_dict is not None:
         for key in current_layoff_cp:
             previous_final_report_cp.pop(key)
+        # Retirando subordinados demitidos
+        key_current_layoff_cp = current_layoff_cp.keys()
+        for i in key_current_layoff_cp:
+            for j in previous_final_report_cp:
+                if i in previous_final_report_cp[j]['Subordinados']:
+                    previous_final_report_cp[j]['Subordinados'].remove(i)
+        
     
     return previous_final_report_cp
     # escrever_json_file(year, output_file_name, previous_final_report)

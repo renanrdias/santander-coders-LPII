@@ -40,25 +40,6 @@ def ler_csv(year:int, input_file_name:str, check_file_size:bool=True) -> List[Li
                 raise EmptyFileException(f"O arquivo {input_file_name} está vazio.")
         else:
             return None
-    
-    # if input_file_name != "":
-    #     input_file_path = BASE_PATH+f"/{year}/{input_file_name}"
-    #     try:
-    #         assert os.path.isfile(input_file_path) is True
-    #     except:
-    #         print(f"O arquivo {input_file_name} não existe.")
-    #     else:
-    #         try:
-    #             with open(f"{input_file_path}", "r", encoding="UTF-8") as file:
-    #                 arquivo = list(csv.reader(file, delimiter=",", lineterminator="\n"))
-    #                 assert len(arquivo) > 0
-    #         except:
-    #             print(f"O arquivo {input_file_name} está vazio")
-    #         else:
-    #             return arquivo
-    #         #  print(arquivo)
-    # else:
-    #     return None
 
 def gerar_admissoes_dict(lista_admissoes:List[List]) -> dict:
     """Reads in a list of lists. The first list contains attributes and the rest ones have the data.
@@ -117,14 +98,6 @@ def ler_json_file(year: int,file_name:str) -> dict:
             with open(f"{BASE_PATH}/{year}/{file_name}", "r") as file:
                 arquivo = json.load(file)
         return arquivo
-    
-    # try:
-    #     with open(f"{BASE_PATH}/{year}/{file_name}", "r") as file:
-    #         arquivo = json.load(file)
-    # except:
-    #     print(f"O arquivo {file_name} não existe.")
-    # else:
-    #     return arquivo
 
 def escrever_json_file(year:int, output_file_name:str, to_write_json:dict) -> None:
     """Takes a dictionary and writes it as a json file
@@ -195,38 +168,6 @@ def relatorio_final_funcionarios(year:int, previous_final_report:dict, current_a
         
     
     return previous_final_report_cp
-    # escrever_json_file(year, output_file_name, previous_final_report)
-    
-    # try:
-    #     current_admissions_cp = deepcopy(current_admissions_dict)
-    #     current_layoff_cp = deepcopy(current_layoff_dict)
-    # except:
-    #     print("Ocorreu um erro com a cópia dos dicionários.")    
-    # else:
-    #     # Existe keys em comum no relatorio final do ano anterior e admissoes do ano corrente? Sim -> Promocao // Nao -> Somente acrescentar
-    #     # TODO DONE: Atualizar o salário
-    #     # TODO DONE: Atualizar os subordinados se for o caso
-    #     for key in current_admissions_cp:
-    #         if key in previous_final_report:
-    #             previous_final_report[key]["Cargo"] = current_admissions_cp[key]["Cargo"]
-    #             previous_final_report[key]["Salário"] = current_admissions_cp[key]["Salário"]
-    #             previous_final_report[key]["Promoção"] = {f"{year}": current_admissions_cp[key]["Cargo"]} # pegamos somente o ano da promoção
-                
-    #             # atualizamos a lista de subordinados, desconsiderando caracteres "" quando o funcionário promovido ganha subordinados.
-    #             previous_final_report[key]["Subordinados"] = [*[ sub for sub in previous_final_report[key]["Subordinados"] if sub != ""], \
-    #                                                           *[i for i in current_admissions_cp[key]["Subordinados"] \
-    #                                                             if i not in previous_final_report[key]["Subordinados"] and i != ""]]\
-    #                                                             if previous_final_report[key]["Subordinados"] != current_admissions_cp[key]["Subordinados"]\
-    #                                                             else previous_final_report[key]["Subordinados"]
-    #         else:
-    #             previous_final_report[key] = current_admissions_cp[key]
-                
-    #     # Retirar as demissões se existirem
-    #     if current_layoff_dict is not None:
-    #         for key in current_layoff_cp:
-    #             previous_final_report.pop(key)
-            
-        # escrever_json_file(year, output_file_name, previous_final_report)
         
 
 if __name__ == "__main__":

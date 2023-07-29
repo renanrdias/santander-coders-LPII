@@ -84,69 +84,28 @@ if __name__ == "__main__":
                         escrever_json_file(year, output_file_name, final_report)
                 else:
                     # fluxo com demissoes
-                    pass
-                        
-                        
+                    try:
+                        demissoes_list = ler_csv(year, demissoes_csv)
+                    except FileNotFoundError as e:
+                        print(e)
+                    except EmptyFileException as e:
+                        print(e)
+                    else:
+                        demissoes_dict = gerar_demissoes_dict(demissoes_list)
+                        print("Gerando logs de demissões...")
+                        escrever_json_file(year, f"log_demissoes_{year}.json", demissoes_dict)
+                        previous_final_report_name = input(f"Digite o nome do relatório do ano anterior ({year-1}): ")
+                        try:
+                            previous_year_report = ler_json_file(year-1, previous_final_report_name)
+                        except FileNotFoundError as e:
+                            print(e)
+                        except EmptyFileException as e:
+                            print(e)
+                        else:
+                            output_file_name = input("Digite o nome do arquivo para gerar como json: ")
+                            final_report = relatorio_final_funcionarios(year, previous_year_report, admissoes_dict, demissoes_dict)
+                            escrever_json_file(year, output_file_name, final_report)
 
-                # else:
-                    # demissoes_list = ler_csv(year, demissoes_csv)
-                    # pass
-
-                    
-            
-            
-            # if ler_csv(year, admissoes_csv) is not None:
-            #     admissoes_list = ler_csv(year, admissoes_csv)
-            #     admissoes_dict = gerar_admissoes_dict(admissoes_list)
-
-            #     # Gerenciando demissões
-            #     demissoes_csv = input("Digite o nome do arquivo csv que contém as demissões: ")
-            #     if ler_csv(year, demissoes_csv) is not None:
-            #         demissoes_list = ler_csv(year, demissoes_csv)
-            #         demissoes_dict = gerar_admissoes_dict(demissoes_list)
-
-            #         # Gerando log demissões
-            #         escrever_json_file(year, f"log_demissões_{year}.json", demissoes_dict)
-
-            #         previous_final_report_name = input(f"Digite o nome do relatório do ano anterior ({year-1}): ")
-            #         previous_final_report_path = f"{BASE_PATH}/{year-1}/{previous_final_report_name}"
-                    
-            #         try:
-            #             assert os.path.isfile(previous_final_report_path) is True
-            #         except:
-            #             print(f"O arquivo {previous_final_report_name} não existe.")
-            #         else:
-            #             previous_year_report = ler_json_file(previous_final_report_path)
-            #             try:
-            #                 assert previous_year_report is not None
-            #             except:
-            #                 print(f"O arquivo {previous_final_report_name} está vazio.")
-            #             else:
-            #                 output_file_name = input("Digite o nome do arquivo para gerar como json: ")
-            #                 relatorio_final_funcionarios(year, 
-            #                                             output_file_name, 
-            #                                             admissoes_dict, demissoes_dict, 
-            #                                             previous_year_report)
-            #     else:
-            #         previous_final_report_name = input(f"Digite o nome do relatório do ano anterior ({year-1}): ")
-            #         previous_final_report_path = f"{BASE_PATH}/{year-1}/{previous_final_report_name}"
-                    
-            #         try:
-            #             assert os.path.isfile(previous_final_report_path) is True
-            #         except:
-            #             print(f"O arquivo {previous_final_report_name} não existe.")
-            #         else:
-            #             previous_year_report = ler_json_file(previous_final_report_path)
-            #             try:
-            #                 assert previous_year_report is not None
-            #             except:
-            #                 print(f"O arquivo {previous_final_report_name} está vazio.")
-            #             else:
-            #                 output_file_name = input("Digite o nome do arquivo para gerar como json: ")
-            #                 relatorio_final_funcionarios(year, 
-            #                                             output_file_name, 
-            #                                             admissoes_dict, 
-            #                                             previous_year_report)
                     
                             
             #     # Gerando penetras .json

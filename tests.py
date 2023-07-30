@@ -2,6 +2,7 @@ import os
 import configparser
 from funcionarios_final import *
 from penetras import gerar_penetras_dict
+from check_infos import *
 
 config = configparser.ConfigParser()
 config.read_file(open("dl.cfg"))
@@ -13,8 +14,11 @@ if __name__ == "__main__":
     
     try:
         year = int(input("Insira o ano para o qual deseja gerar o relatório (yyyy): "))
-    except :
+        check_available_years(year)
+    except ValueError:
         print("Digite um ano válido (somente números).")
+    except FolderDoesNotExists as e:
+        print(e)
     else:
         if year == 2020:
             admissoes_csv = input("Digite o nome do arquivo csv que contém as admissões: ")
@@ -39,8 +43,6 @@ if __name__ == "__main__":
                     print(f"Gerando relatório de penetras para a festa de final de ano de {year}...")
                     escrever_json_file(2020, f"penetras_festa_{year}.json", penetras_dict)
         
-        elif year < 2020:
-            print("Somente é possível gerar relatórios a partir de 2020.")
         else:
             # Gerenciando admissões para year > 2020
             admissoes_csv = input("Digite o nome do arquivo csv que contém as admissões: ")

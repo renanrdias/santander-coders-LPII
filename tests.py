@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
                     
                             
-            #     # Gerando penetras .json
-            #     lista_festa = ler_csv(year, "festa.csv")
-            #     penetras_dict = gerar_penetras_dict(lista_festa, f"{BASE_PATH}/{year}/{output_file_name}")
-            #     escrever_json_file(year, f"penetras_festa{year}.json", penetras_dict)
+                # Gerando penetras .json
+                lista_festa = ler_csv(year, "festa.csv")
+                penetras_dict = gerar_penetras_dict(lista_festa, f"{BASE_PATH}/{year}/{output_file_name}")
+                escrever_json_file(year, f"penetras_festa{year}.json", penetras_dict)

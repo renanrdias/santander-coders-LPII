@@ -31,11 +31,12 @@ if __name__ == "__main__":
                 escrever_json_file(year, output_file_name, admissoes_dict)
 
                 # Gerando json penetras
-                lista_festa = ler_csv(2020, "festa.csv", False)
+                lista_festa = ler_csv(2020, "festa.csv", True)
                 if lista_festa is None:
                     pass
                 else:
                     penetras_dict = gerar_penetras_dict(lista_festa, admissoes_dict)
+                    print(f"Gerando relatório de penetras para a festa de final de ano de {year}...")
                     escrever_json_file(2020, f"penetras_festa_{year}.json", penetras_dict)
         
         elif year < 2020:
@@ -111,4 +112,4 @@ if __name__ == "__main__":
                 # Gerando penetras .json
                 lista_festa = ler_csv(year, "festa.csv")
                 penetras_dict = gerar_penetras_dict(lista_festa, f"{BASE_PATH}/{year}/{output_file_name}")
-                escrever_json_file(year, f"penetras_festa{year}.json", penetras_dict)
+                escrever_json_file(year, f"penetras_festa_{year}.json", penetras_dict)

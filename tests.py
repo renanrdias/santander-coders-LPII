@@ -29,8 +29,11 @@ if __name__ == "__main__":
         print(e)
     else:
         if year == 2020:
-            admissoes_csv = input("Digite o nome do arquivo csv que contém as admissões: ")
-
+            while True:
+                admissoes_csv = input("Digite o nome do arquivo csv que contém as admissões: ")
+                if admissoes_csv != "": break 
+                else: 
+                    print("O nome do arquivo não pode ser vazio. Tente novamente")
             try:
                 admissoes_list = ler_csv(year, admissoes_csv)
             except FileNotFoundError as e:
@@ -39,7 +42,12 @@ if __name__ == "__main__":
                 print(e)
             else:
                 admissoes_dict = gerar_admissoes_dict(admissoes_list)
-                output_file_name = input("Digite o nome do arquivo para gerar como json: ")
+                while True:
+                    output_file_name = input("Digite o nome do relatório para gerar como json: ")
+                    if output_file_name != "":
+                        break
+                    else:
+                        print("O nome do relatório não pode ser vazio.")
                 escrever_json_file(year, output_file_name, admissoes_dict)
 
                 # Gerando json penetras
@@ -55,7 +63,12 @@ if __name__ == "__main__":
         
         else:
             # Gerenciando admissões para year > 2020
-            admissoes_csv = input("Digite o nome do arquivo csv que contém as admissões: ")
+            while True:
+                admissoes_csv = input("Digite o nome do arquivo csv que contém as admissões: ")
+                if admissoes_csv != "":
+                    break
+                else:
+                    print("O nome do arquivo não pode ser vazio. Tente novamente")
             try:
                 admissoes_list = ler_csv(year, admissoes_csv)
             except FileNotFoundError as e:
@@ -82,8 +95,13 @@ if __name__ == "__main__":
                 
                 if demissoes_csv == "":
                     # fluxo sem demissoes                    
-                    
-                    output_file_name = input("Digite o nome do arquivo para gerar como json: ")
+                    while True:
+                        output_file_name = input("Digite o nome do arquivo para gerar como json: ")
+                        if output_file_name != "":
+                            break
+                        else:
+                            print("O nome do relatório não pode ser vazio.")
+
                     final_report = relatorio_final_funcionarios(year, previous_year_report, admissoes_dict)
                     escrever_json_file(year, output_file_name, final_report)
                 else:
@@ -99,7 +117,13 @@ if __name__ == "__main__":
                         print("Gerando logs de demissões...")
                         escrever_json_file(year, f"log_demissoes_{year}.json", demissoes_dict)
                         
-                        output_file_name = input("Digite o nome do arquivo para gerar como json: ")
+                        while True:
+                            output_file_name = input("Digite o nome do arquivo para gerar como json: ")
+                            if output_file_name != "":
+                                break
+                            else:
+                                print("O nome do relatório não pode ser vazio.")
+                                
                         final_report = relatorio_final_funcionarios(year, previous_year_report, admissoes_dict, demissoes_dict)
                         escrever_json_file(year, output_file_name, final_report)
 

@@ -7,7 +7,7 @@ from check_infos import *
 config = configparser.ConfigParser()
 config.read_file(open("dl.cfg"))
 BASE_PATH = config["BASE_PATH"]["ROOT"]
-START_YEAR = 2020
+START_YEAR = available_year()[0]
 
 
 if __name__ == "__main__":    
@@ -15,9 +15,16 @@ if __name__ == "__main__":
     try:
         year = int(input("Insira o ano para o qual deseja gerar o relatório (yyyy): "))
         check_available_years(year)
+        if year != START_YEAR:
+            previous_final_report_name = input(f"Digite o nome do relatório do ano anterior ({year-1}): ")
+            previous_year_report = ler_json_file(year-1, previous_final_report_name)
     except ValueError:
         print("Digite um ano válido (somente números).")
     except FolderDoesNotExists as e:
+        print(e)
+    except FileNotFoundError as e:
+        print(e)
+    except EmptyFileException as e:
         print(e)
     else:
         if year == 2020:
@@ -71,20 +78,11 @@ if __name__ == "__main__":
                         confirma_em_branco = input("Você deixou em branco o arquivo demissões. Confirma (s/n)? ")
                 
                 if demissoes_csv == "":
-                    # fluxo sem demissoes
+                    # fluxo sem demissoes                    
                     
-                    # ler o final_report ano anterior
-                    previous_final_report_name = input(f"Digite o nome do relatório do ano anterior ({year-1}): ")
-                    try:
-                        previous_year_report = ler_json_file(year-1, previous_final_report_name)
-                    except FileNotFoundError as e:
-                        print(e)
-                    except EmptyFileException as e:
-                        print(e)
-                    else:
-                        output_file_name = input("Digite o nome do arquivo para gerar como json: ")
-                        final_report = relatorio_final_funcionarios(year, previous_year_report, admissoes_dict)
-                        escrever_json_file(year, output_file_name, final_report)
+                    output_file_name = input("Digite o nome do arquivo para gerar como json: ")
+                    final_report = relatorio_final_funcionarios(year, previous_year_report, admissoes_dict)
+                    escrever_json_file(year, output_file_name, final_report)
                 else:
                     # fluxo com demissoes
                     try:
@@ -97,21 +95,14 @@ if __name__ == "__main__":
                         demissoes_dict = gerar_demissoes_dict(demissoes_list)
                         print("Gerando logs de demissões...")
                         escrever_json_file(year, f"log_demissoes_{year}.json", demissoes_dict)
-                        previous_final_report_name = input(f"Digite o nome do relatório do ano anterior ({year-1}): ")
-                        try:
-                            previous_year_report = ler_json_file(year-1, previous_final_report_name)
-                        except FileNotFoundError as e:
-                            print(e)
-                        except EmptyFileException as e:
-                            print(e)
-                        else:
-                            output_file_name = input("Digite o nome do arquivo para gerar como json: ")
-                            final_report = relatorio_final_funcionarios(year, previous_year_report, admissoes_dict, demissoes_dict)
-                            escrever_json_file(year, output_file_name, final_report)
+                        
+                        output_file_name = input("Digite o nome do arquivo para gerar como json: ")
+                        final_report = relatorio_final_funcionarios(year, previous_year_report, admissoes_dict, demissoes_dict)
+                        escrever_json_file(year, output_file_name, final_report)
 
                     
                             
                 # Gerando penetras .json
                 lista_festa = ler_csv(year, "festa.csv")
-                penetras_dict = gerar_penetras_dict(lista_festa, f"{BASE_PATH}/{year}/{output_file_name}")
+                penetras_dict = gerar_penetras_dict(lista_festa, final_report)
                 escrever_json_file(year, f"penetras_festa_{year}.json", penetras_dict)

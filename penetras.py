@@ -19,10 +19,11 @@ def gerar_penetras_dict(lista_presentes:List[List], final_report:dict,) -> dict:
     
     # Excluir Histórico de Promoção de cada lista
     lista_presentes = [l[:3] for l in lista_presentes]
-    # colunas = lista_presentes[0][1:]
+    
     festa_dict = {e[0]: dict(*map(dict,[zip(lista_presentes[0][1:], e[1:])])) for e in lista_presentes[1:]}
     
     penetra_dict = {e: festa_dict[e] for e in festa_dict if (e not in final_report) or (e in final_report and festa_dict[e]["Nome"] != final_report[e]["Nome"])}
+    
     return penetra_dict
 
 
@@ -35,14 +36,5 @@ def penetras_total():
     print(penetras_total)
 
 
-if __name__ == "__main__":
-    folders = os.listdir(os.path.realpath("./"))
-    years = [year for year in folders if year.startswith("20")]
-    penetras = glob.glob("*/penetras_festa_*.json")
-    print(penetras)
-    penetras_total_dict = {}
-    for p in penetras:
-        if int(p.split("/")[0]) == 2022:
-            penetras_total_dict.update(ler_json_file(int(p.split("/")[0]), p.split("/")[1]))
-    print(penetras_total_dict)    
-    # pass
+if __name__ == "__main__":    
+    pass

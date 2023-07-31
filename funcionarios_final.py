@@ -139,9 +139,7 @@ def relatorio_final_funcionarios(year:int, previous_final_report:dict, current_a
     for key in current_admissions_cp:
             if key in previous_final_report_cp:
                 previous_final_report_cp[key]["Cargo"] = current_admissions_cp[key]["Cargo"]
-                previous_final_report_cp[key]["Salário"] = current_admissions_cp[key]["Salário"]
-
-                previous_final_report_cp[key]["Promoção"] = {f"{year}": current_admissions_cp[key]["Cargo"]} # pegamos somente o ano da promoção
+                previous_final_report_cp[key]["Salário"] = current_admissions_cp[key]["Salário"]                
                 
                 # pegamos somente o ano da promoção
                 previous_final_report_cp[key]["Histórico de Promoção"] = [*previous_final_report_cp[key]["Histórico de Promoção"], (f"{year}", current_admissions_cp[key]["Cargo"])]

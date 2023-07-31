@@ -1,7 +1,8 @@
 import os
 import configparser
-from funcionarios_final import *
 from penetras import gerar_penetras_dict
+from extrato import extrato_anual
+from funcionarios_final import *
 from check_infos import *
 
 config = configparser.ConfigParser()
@@ -49,6 +50,8 @@ if __name__ == "__main__":
                     penetras_dict = gerar_penetras_dict(lista_festa, admissoes_dict)
                     print(f"Gerando relatório de penetras para a festa de final de ano de {year}...")
                     escrever_json_file(2020, f"penetras_festa_{year}.json", penetras_dict)
+
+                    extrato_anual(year, admissoes_dict, penetras_dict)
         
         else:
             # Gerenciando admissões para year > 2020
@@ -106,3 +109,6 @@ if __name__ == "__main__":
                 lista_festa = ler_csv(year, "festa.csv")
                 penetras_dict = gerar_penetras_dict(lista_festa, final_report)
                 escrever_json_file(year, f"penetras_festa_{year}.json", penetras_dict)
+
+                extrato_anual(year, admissoes_dict, penetras_dict, final_report) if demissoes_csv == "" else extrato_anual(year, admissoes_dict, penetras_dict, final_report, demissoes_dict)
+                 

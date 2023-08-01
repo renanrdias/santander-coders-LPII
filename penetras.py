@@ -27,7 +27,13 @@ def gerar_penetras_dict(lista_presentes:List[List], final_report:dict,) -> dict:
     return penetra_dict
 
 
-
+# def penetras_total():
+#     penetras = glob.glob("*/penetras*.json")
+#     penetras_total = {}
+#     for p in penetras:
+#         year, file = p.split("/")
+#         penetras_total.update(ler_json_file(int(year), file))
+#     print(penetras_total)
 
 
 if __name__ == "__main__":    

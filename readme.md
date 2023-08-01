@@ -33,10 +33,14 @@ python main.py
 
 ## Observações
 
-O projeto foi desenvolvido sobre uma plataforma baseada em unix. Para rodá-lo em sistema windows, pode ser necessário substituir o caracter "/" por "\\" para evitar erros na definição dos caminhos aos diretórios e arquivos. Essa substituição deve ser feita nos arquivos: 
-- dl.cfg 
-- funcionarios_final.py
-- penetras.py
+1. O projeto foi desenvolvido sobre uma plataforma baseada em unix. Para rodá-lo em sistema windows, pode ser necessário substituir o caracter "/" por "\\" para evitar erros na definição dos caminhos aos diretórios e arquivos. Essa substituição deve ser feita nos arquivos:
+   
+   - funcionarios_final.py
+   - penetras.py
+
+2. É necessário inserir o *path* do projeto no arquivo:
+
+    - dl.cfg
 
 ## License
 
